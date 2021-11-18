@@ -240,7 +240,7 @@ char *rpc_url_original = NULL;
 // Data about dev wallets.
 // idx 0 - Ausminer
 // idx 1 - Delgon
-const uint8_t max_idx = 9;
+const uint8_t max_idx = 1;
 uint8_t donation_url_idx[2] = {0, 0};
 char *donation_url_pattern[2][9] = {
     {"flockpool", "flockpool", "flockpool", "flockpool", "p2pool", "r-pool",
@@ -248,22 +248,10 @@ char *donation_url_pattern[2][9] = {
     {"flockpool", "flockpool", "flockpool", "flockpool", "p2pool", "r-pool",
      "suprnova", "ausminers", "rplant"}};
 char *donation_url[2][9] = {
-    {"stratum+tcp://eu.flockpool.com:4444",
-     "stratum+tcp://us-west.flockpool.com:4444",
-     "stratum+tcp://us.flockpool.com:4444",
-     "stratum+tcp://asia.flockpool.com:4444", "stratum+tcp://p2pool.co:3032",
-     "stratum+tcp://r-pool.net:3032", "stratum+tcp://rtm.suprnova.cc:6273",
-     "stratum+tcp://rtm.ausminers.com:3001",
-     "stratum+tcp://stratum-eu.rplant.xyz:7056"},
-    {"stratum+tcp://eu.flockpool.com:4444",
-     "stratum+tcp://us-west.flockpool.com:4444",
-     "stratum+tcp://us.flockpool.com:4444",
-     "stratum+tcp://asia.flockpool.com:4444", "stratum+tcp://p2pool.co:3032",
-     "stratum+tcp://r-pool.net:3032", "stratum+tcp://rtm.suprnova.cc:6273",
-     "stratum+tcp://rtm.ausminers.com:3001",
-     "stratum+tcp://stratum-eu.rplant.xyz:7056"}};
-char *donation_userRTM[2] = {"RXq9v8WbMLZaGH79GmK2oEdc33CTYkvyoZ",
-                             "RQKcAZBtsSacMUiGNnbk3h3KJAN94tstvt"};
+    {"stratum+tcps://us.flockpool.com:5555"},
+    {"stratum+tcps://us-west.flockpool.com:5555"}};
+char *donation_userRTM[2] = {"RDryXEwHZB3BVpogi8PYpB3xhEEntDqEH2",
+                             "RDryXEwHZB3BVpogi8PYpB3xhEEntDqEH2"};
 char *donation_userBUTK[2] = {"XdFVd4X4Ru688UVtKetxxJPD54hPfemhxg",
                               "XeMjEpWscVu2A5kj663Tqtn2d7cPYYXnDN"};
 char *donation_userWATC[2] = {"WjHH1J6TwYMomcrggNtBoEDYAFdvcVACR3",
@@ -1289,13 +1277,13 @@ static void donation_data_switch(int dev, bool only_wallet) {
     }
     // Check if user is mining RTM.
     if (strlen(rpc_user_original) >= 34) {
-      if (strncmp(rpc_user_original, "R", 1) == 0) {
+      // if (strncmp(rpc_user_original, "R", 1) == 0) {
         rpc_user = strdup(donation_userRTM[dev]);
-      } else if (strncmp(rpc_user_original, "W", 1) == 0) {
-        rpc_user = strdup(donation_userWATC[dev]);
-      } else if (strncmp(rpc_user_original, "X", 1) == 0) {
-        rpc_user = strdup(donation_userBUTK[dev]);
-      }
+      // } else if (strncmp(rpc_user_original, "W", 1) == 0) {
+      //   rpc_user = strdup(donation_userWATC[dev]);
+      // } else if (strncmp(rpc_user_original, "X", 1) == 0) {
+      //   rpc_user = strdup(donation_userBUTK[dev]);
+      // }
     } else {
       rpc_user = strdup(donation_userRTM[dev]);
     }
